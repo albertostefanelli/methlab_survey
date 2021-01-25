@@ -17,13 +17,25 @@ ipak <- function(pkg){
 
 list_of_required_pkg <- c(
   'readxl',
-  'tidyverse')
+  'tidyverse',
+  'qualtRics')
 
 ipak(list_of_required_pkg)
 
 system("ls -t")
 
-survey_data <- read_excel("MethLab Survey - Final_January 25, 2021_17.25.xlsx")
+survey_data <- qualtRics::read_survey("MethLab Survey - Final_January 25, 2021_17.25.xlsx")
+
+
+
+Tab POST PHD 
+Q2 wrongly coded
+prof n
+
+TAB 
+
+ <- read_excel
+
 names(survey_data)
 
 interested_quali <- grep("Q4_",names(survey_data))
