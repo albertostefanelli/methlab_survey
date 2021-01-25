@@ -1,0 +1,82 @@
+---
+title: KUL Faculty Social Sciences MethLab report
+author: Alberto Stefanelli^[[Alberto Stefanelli](https://albertostefanelli.com/) is an FWO Ph.D Fellow at the Institute for Social and Political Opinion Research, KU Leuven. Email:\hspace{0.1cm} alberto.stefanelli@kuleuven.be], Luca Carbone, Amandine Larusse 
+bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
+link-citations: true
+urlcolor: blue
+abstract: \noindent \singlespacing Methlab survey report
+output: 
+    pdf_document:
+      number_sections: true
+      #toc: true
+      fig_caption: yes
+      fig_width: 7
+      fig_height: 7
+      keep_tex: no
+    # word_document:
+    #   reference_docx: mystyles.docx
+    #   toc: true
+    #   fig_caption: true
+header-includes:
+  - \usepackage{fancyhdr}
+  # - \usepackage{longtable}
+  # - \usepackage{booktabs}
+  # - \usepackage{dcolumn}
+  # - \usepackage{threeparttable}
+  - \fancyhf{}
+  - \fancyhead[RO]{}
+  - \fancyhead[RE]{Alberto Stefanelli}
+  # - \fancyfoot[C]{\thepage}
+  # - \pagestyle{fancy}
+  # - \usepackage{setspace}\doublespacing
+  # - \renewcommand{\headrulewidth}{0.4pt}
+  # - \renewcommand{\footrulewidth}{0pt}
+  - \usepackage{float}
+  #- \usepackage{sidewaystable}
+  # - \DeclareUnicodeCharacter{FB01}{fi}
+  - \usepackage{setspace}\doublespacing
+  - \usepackage{lscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{colortbl}
+
+
+### BLUE LINK 
+### GRAMMAR CECK
+### FIGURE TOC
+### APPENDIX AFTER BIB 
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='hide'}
+source("./script_analysis.r",local = knitr::knit_global())
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='hide'}
+#install.packages('wordcountaddin')
+word_count <- wordcountaddin::word_count("report.Rmd")
+```
+
+|                                                    |
+|:--------------------------------------------------:|
+| `r paste("Word Count (WO references)",word_count)` |
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+for (i in seq(interested_quali)){
+q <- names(survey_data)[interested_quali[[i]]]
+n <- quali_questions_labels[[i]]
+print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
+                label = list(q ~ n )
+) %>% as_gt() )
+  
+}
+
+```
+
+  
+
+
+
+
