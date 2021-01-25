@@ -1,0 +1,47 @@
+
+
+options(scipen=999)
+
+# PACKAGE INSTALLING AND UPGRADING #
+# install and load defined list of packages
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE,repos = c(
+      CRAN = 'https://cran.rstudio.com',
+      CRANextra = 'https://macos.rbind.io'
+    )
+    )
+  sapply(pkg, require, character.only = TRUE)
+}
+
+list_of_required_pkg <- c(
+  'readxl',
+  'tidyverse')
+
+ipak(list_of_required_pkg)
+
+system("ls -t")
+
+survey_data <- read_excel("MethLab Survey - Final_January 25, 2021_17.25.xlsx")
+names(survey_data)
+
+interested_quali <- grep("Q4_",names(survey_data))
+
+for (i in interested_quali){
+print(names(survey_data)[[i]])
+t<- table(array(na.omit(as.numeric(survey_data[[i]]))))/sum(table(array(na.omit(as.numeric(survey_data[[i]])))))
+print(t)
+}
+
+interested_quanti <- grep("Q5_",names(survey_data))
+
+for (i in interested_quanti){
+  print(names(survey_data)[[i]])
+  t<- table(array(na.omit(as.numeric(survey_data[[i]]))))/sum(table(array(na.omit(as.numeric(survey_data[[i]])))))
+  print(t)
+}
+
+table(survey_data$Q13)
+
+?prop.table
