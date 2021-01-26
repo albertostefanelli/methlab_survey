@@ -79,6 +79,10 @@ print(survey_data_labels %>% select(Q3) %>% gtsummary::tbl_summary())
 
 # Interest in Training
 
+```{r echo=FALSE, out.width = '100%'}
+knitr::include_graphics("interest.jpg")
+```
+
 ## Interest in Qualtitative courses 
 
 
@@ -94,13 +98,6 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
 }
 
 ```
-
-
-```{r echo=FALSE, fig.cap="Interests qualitative courses", out.width = '100%'}
-knitr::include_graphics("quali_pref.jpg")
-```
-
-
 
 ## Interest in Quantitative courses 
 
@@ -122,6 +119,10 @@ for (i in seq(interested_quanti)){
 
   
 ## Interest in other training activites 
+
+```{r echo=FALSE, out.width = '100%'}
+knitr::include_graphics("train.jpg")
+```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
 
@@ -161,6 +162,10 @@ print(survey_data_labels %>% select(Q15) %>% gtsummary::tbl_summary(label = list
 ```
 
 # Expertise in Methods
+
+```{r echo=FALSE, out.width = '100%'}
+knitr::include_graphics("knowledge.jpg")
+```
 
 ## Knowledge in Qualtative courses 
 
