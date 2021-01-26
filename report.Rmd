@@ -94,7 +94,7 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
 }
 
 
-```{r Interests qualitative courses, echo=FALSE, fig.cap="Interests qualitative courses", out.width = '100%'}
+```{r luca, echo=FALSE, fig.cap="Interests qualitative courses", out.width = '100%'}
 knitr::include_graphics("quali_pref.tiff")
 ```
 
