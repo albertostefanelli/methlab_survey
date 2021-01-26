@@ -65,13 +65,7 @@ word_count <- wordcountaddin::word_count("report.Rmd")
 |:--------------------------------------------------:|
 | `r paste("Word Count (WO references)",word_count)` |
 
-# Intro 
-
-insret an image 
-
-```{r luca, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("luca.jpg")
-```
+# Intro
 
 # Method background of our sample 
 
@@ -100,6 +94,9 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
 }
 
 
+```{r Interests qualitative courses, echo=FALSE, fig.cap="Interests qualitative courses", out.width = '100%'}
+knitr::include_graphics("quali_pref.tiff")
+```
 
 ```
 
