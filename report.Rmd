@@ -1,6 +1,10 @@
 ---
 title: KUL Faculty Social Sciences MethLab report
 author: Amandine Larusse^[[Amandine Lerusse](https://soc.kuleuven.be/io/english/staff/00119302) is a Ph.D candidate at the Public Governance Institute, KU Leuven. Email:\hspace{0.1cm} amandine.lerusse@kuleuven.be], Luca Carbone^[[Luca Carbone](https://www.lucacarbone.com) is an Ph.D candidate at the School for Mass Communication Research, KU Leuven. Email:\hspace{0.1cm} lucacarbone.lc@gmail.com], Alberto Stefanelli^[[Alberto Stefanelli](https://albertostefanelli.com/) is an FWO Ph.D Fellow at the Institute for Social and Political Opinion Research, KU Leuven. Email:\hspace{0.1cm} alberto.stefanelli@kuleuven.be]
+knit: (function(inputFile, encoding) { 
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), output_dir="./docs/report.html")) })
 bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 link-citations: true
 urlcolor: blue
@@ -62,6 +66,12 @@ word_count <- wordcountaddin::word_count("report.Rmd")
 | `r paste("Word Count (WO references)",word_count)` |
 
 # Intro 
+
+insret an image 
+
+```{r luca, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+knitr::include_graphics("luca.jpg")
+```
 
 # Method background of our sample 
 
@@ -137,7 +147,9 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
 
-print(survey_data_labels %>% select(Q13) %>% gtsummary::tbl_summary())
+print(survey_data_labels %>% select(Q13) %>% gtsummary::tbl_summary(label = list(Q13 ~ "Interested in joining a 'PhD soup'"
+)))
+
 
 ```
 
@@ -145,7 +157,8 @@ print(survey_data_labels %>% select(Q13) %>% gtsummary::tbl_summary())
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
 
-print(survey_data_labels %>% select(Q15) %>% gtsummary::tbl_summary())
+print(survey_data_labels %>% select(Q15) %>% gtsummary::tbl_summary(label = list(Q15 ~ "Interested in a methods-related newsletter")))
+
 
 ```
 
