@@ -27,9 +27,9 @@ ipak(list_of_required_pkg)
 # Q4 On a scale from 1 (not at all interested) to 4 (very interested), to what extent would you be interested in following a MethLab session on the following topics?
 system("ls -t")
 survey_data <- qualtRics::read_survey("data_numeric.csv")
+survey_data <- survey_data[!is.na(survey_data$Q3), ]
 survey_data_labels <- qualtRics::read_survey("data.csv")
-
-names(survey_data)
+survey_data_labels <- survey_data_labels[!is.na(survey_data_labels$Q3), ]
 
 survey_data$Q3 <- survey_data_labels$Q3
 
@@ -44,12 +44,12 @@ quali_questions_labels <- c(
 "Process tracing",
 "Discourse analysis",
 "Narrative analysis",
-"Ethnographic and other field research methods",
+"Ethnographic methods",
 "Diary study", 
 "Qualitative data analysis",
 "Historical methods",
 "Multi-method research",
-"Case-based research and set-theoretic thinking (QCA)",
+"QCA",
 "Data visualisation"
 )
 
@@ -70,15 +70,15 @@ quanti_questions_labels <- c("Multi-level analysis",
 "Mediation analysis",
 "Longitudinal modelling",
 "Survival analysis",
-"Logistic Regression and General Linear Models", 
+"Logistic Regression and GLM", 
 "Survey and questionnaire design",
-"Automated collection of web and social data",
+"Web scraping",
 "Network analysis",
 "Machine learning",
 "Quantitative text analysis",
 "Panel data analysis",
 "Bayesian analysis",
-"Causal inference: experimental and semi-experimental design"
+"(Semi-)Experimental design"
 )
 
 
@@ -91,6 +91,35 @@ quanti_questions_labels <- c("Multi-level analysis",
 #   
 # }
 
+expert_quali <- grep("Q8_",names(survey_data))
+expert_quanti <- grep("Q9_",names(survey_data))
+survey_data_labels <- survey_data_labels %>% mutate_at(vars(starts_with("Q8_")), 
+                                                       funs(factor(.,levels=c( 'Not knowledgeable at all',
+                                                                               'Moderately knowledgeable',
+                                                                               'Slightly knowledgeable',
+                                                                               'Very knowledgeable'),ordered = TRUE)))
 
+
+survey_data_labels <- survey_data_labels %>% mutate_at(vars(starts_with("Q9_")), 
+                                                funs(factor(.,levels=c( 'Not knowledgeable at all',
+                                                                        'Moderately knowledgeable',
+                                                                        'Slightly knowledgeable',
+                                                                        'Very knowledgeable'),ordered = TRUE)))
+
+training_questions_labels <- c(
+"Career session academic career",
+"Career session non-academic career",
+"Research integrity and ethics",
+"Data management plan",
+"SMEC",
+"Proposal writing",
+"Postdoctoral funding opportunities", 
+"Stress and wellbeing", 
+"Open Science - What? Why? How?",
+"Pitch your research",
+"Educational skills"
+)
+
+training <- grep("Q11_",names(survey_data))
 
 

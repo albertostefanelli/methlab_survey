@@ -1,18 +1,19 @@
 ---
 title: KUL Faculty Social Sciences MethLab report
-author: Alberto Stefanelli^[[Alberto Stefanelli](https://albertostefanelli.com/) is an FWO Ph.D Fellow at the Institute for Social and Political Opinion Research, KU Leuven. Email:\hspace{0.1cm} alberto.stefanelli@kuleuven.be], Luca Carbone, Amandine Larusse 
+author: Amandine Larusse^[[Amandine Lerusse](https://soc.kuleuven.be/io/english/staff/00119302) is a Ph.D candidate at the Public Governance Institute, KU Leuven. Email:\hspace{0.1cm} amandine.lerusse@kuleuven.be], Luca Carbone^[[Luca Carbone](https://www.lucacarbone.com) is an Ph.D candidate at the School for Mass Communication Research, KU Leuven. Email:\hspace{0.1cm} lucacarbone.lc@gmail.com], Alberto Stefanelli^[[Alberto Stefanelli](https://albertostefanelli.com/) is an FWO Ph.D Fellow at the Institute for Social and Political Opinion Research, KU Leuven. Email:\hspace{0.1cm} alberto.stefanelli@kuleuven.be]
 bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 link-citations: true
 urlcolor: blue
 abstract: \noindent \singlespacing Methlab survey report
 output: 
-    pdf_document:
-      number_sections: true
-      #toc: true
-      fig_caption: yes
-      fig_width: 7
-      fig_height: 7
-      keep_tex: no
+    # pdf_document:
+    #   number_sections: true
+    #   #toc: true
+    #   fig_caption: yes
+    #   fig_width: 7
+    #   fig_height: 7
+    #   keep_tex: no
+    html_document
     # word_document:
     #   reference_docx: mystyles.docx
     #   toc: true
@@ -60,6 +61,21 @@ word_count <- wordcountaddin::word_count("report.Rmd")
 |:--------------------------------------------------:|
 | `r paste("Word Count (WO references)",word_count)` |
 
+# Intro 
+
+# Method background of our sample 
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+print(survey_data_labels %>% select(Q3) %>% gtsummary::tbl_summary())
+
+```
+
+# Interest in Training
+
+## Interest in Qualtitative courses 
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
@@ -73,9 +89,106 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
   
 }
 
+
+
+```
+
+
+## Interest in Quantitative courses 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+for (i in seq(interested_quanti)){
+  q <- names(survey_data)[interested_quanti[[i]]]
+  n <- quanti_questions_labels[[i]]
+  print(tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
+                  label = list(q ~ n )
+  ))
+
+}
+
+
+
 ```
 
   
+## Interest in other training activites 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+for (i in seq(training)){
+q <- names(survey_data)[training[[i]]]
+n <- training_questions_labels[[i]]
+print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
+                label = list(q ~ n )
+) %>% as_gt() )
+  
+}
+
+
+
+
+```
+  
+
+## Interest in other Methlab activites 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+print(survey_data_labels %>% select(Q13) %>% gtsummary::tbl_summary())
+
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+print(survey_data_labels %>% select(Q15) %>% gtsummary::tbl_summary())
+
+```
+
+# Expertise in Methods
+
+## Knowledge in Qualtative courses 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+for (i in seq(expert_quali)){
+q <- names(survey_data)[expert_quali[[i]]]
+n <- quali_questions_labels[[i]]
+print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
+                label = list(q ~ n )
+) %>% as_gt() )
+  
+}
+
+
+
+
+```
+
+  
+## Knowledge in Quantitative courses 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
+
+for (i in seq(expert_quanti)){
+q <- names(survey_data)[expert_quanti[[i]]]
+n <- quanti_questions_labels[[i]]
+print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
+                label = list(q ~ n )
+) %>% as_gt() )
+  
+}
+
+
+
+
+```
 
 
 
