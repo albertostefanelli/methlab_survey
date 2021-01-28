@@ -5,7 +5,6 @@ knit: (function(inputFile, encoding) {
       rmarkdown::render(inputFile,
                         encoding=encoding, 
                         output_file=file.path(dirname(inputFile), output_dir="./docs/report.html")) })
-bibliography: /Users/serg/Library/Mobile Documents/com\~apple\~CloudDocs/academia/library.bib
 link-citations: true
 urlcolor: blue
 abstract: \noindent \singlespacing Methlab survey report
