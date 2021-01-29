@@ -95,16 +95,18 @@ expert_quali <- grep("Q8_",names(survey_data))
 expert_quanti <- grep("Q9_",names(survey_data))
 survey_data_labels <- survey_data_labels %>% mutate_at(vars(starts_with("Q8_")), 
                                                        funs(factor(.,levels=c( 'Not knowledgeable at all',
-                                                                               'Moderately knowledgeable',
                                                                                'Slightly knowledgeable',
-                                                                               'Very knowledgeable'),ordered = TRUE)))
+                                                                               'Moderately knowledgeable',
+                                                                               'Very knowledgeable',
+                                                                               'Extremely knowledgeable'),ordered = TRUE)))
 
 
 survey_data_labels <- survey_data_labels %>% mutate_at(vars(starts_with("Q9_")), 
                                                 funs(factor(.,levels=c( 'Not knowledgeable at all',
-                                                                        'Moderately knowledgeable',
                                                                         'Slightly knowledgeable',
-                                                                        'Very knowledgeable'),ordered = TRUE)))
+                                                                        'Moderately knowledgeable',
+                                                                        'Very knowledgeable',
+                                                                        'Extremely knowledgeable' ),ordered = TRUE)))
 
 training_questions_labels <- c(
 "Career session academic career",
