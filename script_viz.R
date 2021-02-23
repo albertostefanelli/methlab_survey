@@ -3,11 +3,12 @@
 ## ------------------------------------------------------------------------
 
 library(ggplot2)
-
-data <- read.csv("data.csv")
+data <- read.csv("data_viz.csv")
 data <- data[-2,]
 
 main <- data[1, ]
+
+head(main)
 
 for (i in 1:90) {
   main[i] <- sub("\\.*On ", "", sub("\\ .*? - ", " ", main[i][[1]]))
@@ -21,6 +22,8 @@ data[, which(colnames(data)=="Q4_1"):which(colnames(data)=="Q4_11")] <- lapply(d
   levels(x)[c(1, 2, 5)] <- "NA"
   x
 })
+
+
 
 data[, which(colnames(data)=="Q5_1"):which(colnames(data)=="Q5_11")] <- lapply(data[, which(colnames(data)=="Q5_1"):which(colnames(data)=="Q5_11")], function(x){
   levels(x)[c(1, 2, 5)] <- "NA"
@@ -132,7 +135,7 @@ for(i in which(colnames(data)=="Q5_1"):which(colnames(data)=="Q5_11")){
 
 dev.off()
 
-tiff("interest.tiff", res = 600, compression = "lzw", height = 6, width = 10, units = "in")
+tiff("interest.tiff", res = 300, compression = "lzw", height = 6, width = 10, units = "in")
 ggplot(perc, aes(x=reorder(names, values), y=values, fill = meth)) + 
   geom_bar(stat = "identity") +
   ylab("Proportion of respondents") +
@@ -149,7 +152,7 @@ dev.off()
 # Knowledgeable
 ## ------------------------------------------------------------------------
 
-tiff("quali_know.tiff", res = 600, compression = "lzw", height = 8, width = 12, units = "in")
+tiff("quali_know.tiff", res = 300, compression = "lzw", height = 8, width = 12, units = "in")
 par(mar = c(2.5, 2.5, 2.5, 1.5))
 layout(matrix(c(1:15), 5, 3, byrow = TRUE))
 
@@ -187,7 +190,7 @@ for(i in which(colnames(data)=="Q9_1"):which(colnames(data)=="Q9_11")){
 
 dev.off()
 
-tiff("knowledge.tiff", res = 600, compression = "lzw", height = 6, width =10, units = "in")
+tiff("knowledge.tiff", res = 300, compression = "lzw", height = 6, width =10, units = "in")
 ggplot(perc_know, aes(x=reorder(names, values), y=values, fill = meth)) + 
   geom_bar(stat = "identity") +
   ylab("Proportion of respondents") +
@@ -204,7 +207,7 @@ dev.off()
 # Interests training
 ## ------------------------------------------------------------------------
 
-tiff("train_pref.tiff", res = 600, compression = "lzw", height = 6, width = 12, units = "in")
+tiff("train_pref.tiff", res = 300, compression = "lzw", height = 6, width = 12, units = "in")
 par(mar = c(2.5, 2.5, 2.5, 1.5))
 layout(matrix(c(1:15), 5, 3, byrow = TRUE))
 
@@ -223,7 +226,7 @@ for(i in which(colnames(data)=="Q11_1"):which(colnames(data)=="Q11_11")){
 
 dev.off()
 
-tiff("train.tiff", res = 600, compression = "lzw", height = 6, width = 10, units = "in")
+tiff("train.tiff", res = 300, compression = "lzw", height = 6, width = 10, units = "in")
 ggplot(train_crs, aes(x=reorder(names, values), y=values)) + 
   geom_bar(stat = "identity", colour="black", fill="#C5C6C5") +
   ylab("Proportion of respondents") +

@@ -53,22 +53,27 @@ header-includes:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='hide'}
 source("./script_analysis.r",local = knitr::knit_global())
+
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='hide'}
-#install.packages('wordcountaddin')
-word_count <- wordcountaddin::word_count("report.Rmd")
+# install.packages('wordcountaddin')
+# word_count <- wordcountaddin::word_count("report.Rmd")
 ```
 
-|                                                    |
-|:--------------------------------------------------:|
-| `r paste("Word Count (WO references)",word_count)` |
+<!-- |                                                    | -->
+<!-- |:--------------------------------------------------:| -->
+<!-- | `r paste("Word Count (WO references)",word_count)` | -->
 
-# Intro
+
+This website summarizes the findings of a small survey organized by the [MethLab](https://soc.kuleuven.be/fsw/doctoralprogramme/meth-lab) in collaboration with the Doctoral School of the [Faculteit Sociale wetenschappen](https://soc.kuleuven.be/fsw/english), KU Leuven. MethLab is a bottom-up initiative run by Alberto Stefanelli, Luca Carbone, and Amandine Lerusse. Its main goal is to host a series of lectures and workshops held by international method experts and provide an open and inclusive space where PhD and Post-Doc researchers can discuss research and advances in methods. 
+
+We issued a small survey with the aim of understanding in a systematic way the methodological background and the interests of our faculty. The plan is to run a survey at the beginning of each academic year to design the activities of the MethLab. This website will be updated accordingly. The data and the script used to generate this website and the plots are publicly available on [GitHub](https://github.com/albertostefanelli/methlab_survey). 
+
 
 # Method background of our sample 
 
-
+The survey have been answered by 66 researchers, mostly PhDs. The surveyed participants are approximately equally divided between mixed method (33%), qualitative (38%) and quantitative (29%) method background suggesting high heterogeneity within the Scocial Science faculty. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
 
@@ -78,11 +83,17 @@ print(survey_data_labels %>% select(Q3) %>% gtsummary::tbl_summary())
 
 # Interest in Training
 
+
+With regards to researchers’ interests in qualitative training, more than 70 percent of the researchers are somewhat or very interested in having a training in qualitative interviewing, qualitative data analysis, multi-method research and data visualization. Moreover, half of the researchers are also somewhat or very interested in discourse analysis, narrative analysis, diary study, and case-based research and set-theoretic thinking (QCA). 
+
+
 ```{r echo=FALSE, out.width = '100%'}
 knitr::include_graphics("interest.jpg")
 ```
 
 ## Interest in Qualtitative courses 
+
+With regards to researchers’ interests in quantitative training, more than 70 percent of the researchers are somewhat or very interested by multi-level analysis, survey and questionnaire design, and network analysis. Except for survival analysis, machine learning, panel data analysis, and Bayesian analysis, more than 50 percent of the researchers are somewhat or very interested in all the other trainings.  
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
@@ -101,6 +112,8 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
 ## Interest in Quantitative courses 
 
 
+With regards to researchers’ interests in quantitative training, more than 70 percent of the researchers are somewhat or very interested by multi-level analysis, survey and questionnaire design, and network analysis. Except for survival analysis, machine learning, panel data analysis, and Bayesian analysis, more than 50 percent of the researchers are somewhat or very interested in all the other trainings.  
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
 
 for (i in seq(interested_quanti)){
@@ -118,6 +131,8 @@ for (i in seq(interested_quanti)){
 
   
 ## Interest in other training activites 
+
+More than 70 percent of the researchers are interested or very interested in following a career session about academic career as well as non-academic career, a session on proposal writing for FWO fellowships, Open Science, how to pitch academic research, and in having a training on education skills. 
 
 ```{r echo=FALSE, out.width = '100%'}
 knitr::include_graphics("train.jpg")
@@ -142,6 +157,8 @@ print(gtsummary::tbl_cross(survey_data_labels, row=q, col=Q3, percent="row",
 
 ## Interest in other Methlab activites 
 
+Almost 80 percent of the researchers are in favour of joining a PhD soup (a get-together meeting where participants can ask and discuss methodological questions) while 90 percent of the researchers would be interested in receiving some news with methodological highlights (e.g. summer and winter schools, workshops, videos, upcoming activities). 
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, results='asis'}
 
@@ -161,6 +178,8 @@ print(survey_data_labels %>% select(Q15) %>% gtsummary::tbl_summary(label = list
 ```
 
 # Expertise in Methods
+
+With regards to expertise in qualitative research, researchers appear to have expertise in qualitative interviewing and qualitative data analysis while concerning researchers’ expertise in quantitative research, they seem to have expertise in logistic regression and general linear models as well as in survey and questionnaire design. 
 
 ```{r echo=FALSE, out.width = '100%'}
 knitr::include_graphics("knowledge.jpg")
